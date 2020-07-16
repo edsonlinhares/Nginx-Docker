@@ -1,0 +1,19 @@
+version: '3.3'
+
+networks:
+        teste-network:
+                driver: bridge
+
+services:
+        nginx-master:
+                image: nginx:1.19.1-alpine
+                container_name: nginx-master
+                ports:
+                        - 80:80
+                        - 443:443
+                expose:
+                    - "80"
+                    - "443"
+                networks:
+                        - teste-network
+                restart: always                    
