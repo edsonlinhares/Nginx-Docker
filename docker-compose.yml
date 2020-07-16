@@ -31,6 +31,19 @@ services:
                 restart: always
                 depends_on:
                         - nginx-master
+
+        nginx-node2:
+                image: nginx:1.19.1-alpine
+                container_name: nginx-node2
+                expose:
+                    - "80"
+                    - "443"
+                networks:
+                        - teste-network
+                restart: always
+                depends_on:
+                        - nginx-master
                 volumes:
-                        - ./nginx/node1.conf:/etc/nginx/conf.d/defaults.conf:ro
+                        - ./nginx/node2.conf:/etc/nginx/conf.d/defaults.conf:ro
+                        
 
