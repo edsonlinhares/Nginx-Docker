@@ -18,7 +18,7 @@ services:
                         - teste-network
                 restart: always
                 volumes:
-                        - ./nginx/master.conf:/etc/nginx/conf.d/defaults.conf:ro
+                        - ./nginx/master.conf:/etc/nginx/conf.d/default.conf
 
         nginx-node0:
                 image: nginx:1.19.1-alpine
@@ -46,7 +46,7 @@ services:
                 depends_on:
                         - nginx-master
                 volumes:
-                        - ./nginx/www/node1:/usr/share/nginx/html
+                        - ./nginx/www/node1:/usr/share/nginx/html/app1
                         
         nginx-node2:
                 image: nginx:1.19.1-alpine
@@ -60,7 +60,6 @@ services:
                 depends_on:
                         - nginx-master
                 volumes:
-                        - ./nginx/node2.conf:/etc/nginx/conf.d/defaults.conf:ro
-                        - ./nginx/www/node2:/usr/share/nginx/html
+                        - ./nginx/www/node2:/usr/share/nginx/html/app2
                         
 
