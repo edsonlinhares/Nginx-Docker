@@ -16,7 +16,9 @@ services:
                     - "443"
                 networks:
                         - teste-network
-                restart: always                    
+                restart: always
+                volumes:
+                        - ./nginx/master.conf:/etc/nginx/conf.d/defaults.conf:ro
 
         nginx-node1:
                 image: nginx:1.19.1-alpine
@@ -29,5 +31,6 @@ services:
                 restart: always
                 depends_on:
                         - nginx-master
-
+                volumes:
+                        - ./nginx/node1.conf:/etc/nginx/conf.d/defaults.conf:ro
 
