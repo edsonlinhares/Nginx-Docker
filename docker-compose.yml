@@ -20,6 +20,20 @@ services:
                 volumes:
                         - ./nginx/master.conf:/etc/nginx/conf.d/defaults.conf:ro
 
+        nginx-node0:
+                image: nginx:1.19.1-alpine
+                container_name: nginx-node0
+                expose:
+                    - "80"
+                    - "443"
+                networks:
+                        - teste-network
+                restart: always
+                depends_on:
+                        - nginx-master
+                volumes:
+                        - ./nginx/www/node0:/usr/share/nginx/html
+                        
         nginx-node1:
                 image: nginx:1.19.1-alpine
                 container_name: nginx-node1
@@ -31,7 +45,9 @@ services:
                 restart: always
                 depends_on:
                         - nginx-master
-
+                volumes:
+                        - ./nginx/www/node1:/usr/share/nginx/html
+                        
         nginx-node2:
                 image: nginx:1.19.1-alpine
                 container_name: nginx-node2
@@ -45,5 +61,6 @@ services:
                         - nginx-master
                 volumes:
                         - ./nginx/node2.conf:/etc/nginx/conf.d/defaults.conf:ro
+                        - ./nginx/www/node2:/usr/share/nginx/html
                         
 
